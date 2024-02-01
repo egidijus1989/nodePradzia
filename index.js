@@ -23,8 +23,6 @@ const port = '8888'
 
 const server = http.createServer((req, res) =>{
     const {query, pathname} = url.parse(req.url, true);
-    console.log('path', pathname);
-    console.log('query', query)
     switch(pathname){
         case "/":
             res.writeHead(200,{
@@ -42,16 +40,29 @@ const server = http.createServer((req, res) =>{
             break;
         case `/api/product`:
             for(let product of productsInJSON){
-                if(product.id === query.id){
-                    return product
+                if(product.id == query.id){
+                    res.writeHead(200,{
+                        "Content-Type": 'application/json',
+                        'my-header': 'I like node'
+                    })
+                    res.end(JSON.stringify(product));
+                    break
                 }
             }
-            res.writeHead(200,{
-                "Content-Type": 'application/json',
-                'my-header': 'I like node'
-            })
-            res.end(JSON.stringify(product));
             break;
+        case `/api/min`:
+            const minPrice = 0 
+                for(let product of productsInJSON){
+                    if(){
+                        res.writeHead(200,{
+                            "Content-Type": 'application/json',
+                            'my-header': 'I like node'
+                        })
+                        res.end(JSON.stringify(product));
+                        break
+                    }
+                }
+                break
         default:
             res.writeHead(404,{
                 "Content-Type": 'text/html',
