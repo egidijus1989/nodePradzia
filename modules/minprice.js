@@ -1,8 +1,5 @@
-
 module.exports = (productsInJSON) => {
-    for(let product of productsInJSON){
-        if(Math.min(product.price)){
-            
-        }
-    }
-}
+  return productsInJSON.reduce((cheap, expensive) =>
+    cheap.price < expensive.price ? cheap : expensive
+  );
+};
